@@ -4,4 +4,4 @@ echo 'merge conflict demoo';
 
 
 
-echo "for pull request";
+echo "for pull request git push";
