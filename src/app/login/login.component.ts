@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
-  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder,
+    private firestore: AngularFirestore) {
     this.loginForm = this.formBuilder.group({
       'username': ['', Validators.required],
       'password': ['', [Validators.required]]
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.loginForm.value)
+    //Just a test
+    this.firestore.collection('users').add({username: 'peter', password: '123456',email: 'peter@gmail.com'});
   }
   login(){
     this.AuthService.login().subscribe(
