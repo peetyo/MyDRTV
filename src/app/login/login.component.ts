@@ -26,9 +26,10 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.loginForm.value)
-    //Just a test
-    this.firestore.collection('users').add({username: 'peter', password: '123456',email: 'peter@gmail.com'});
+    //PETER: Created for testing the connection to firestore
+    // this.firestore.collection('users').add({username: 'peter', password: '123456',email: 'peter@gmail.com'});
   }
+  // PETER: calling this fake api function to change isLoggedIn to true and give access to the rest of the page
   login(){
     this.AuthService.login().subscribe(
       data => {
