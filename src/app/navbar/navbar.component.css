@@ -10,6 +10,9 @@ nav li a {
 .nav.navbar-nav{
     margin-top: 4px;
 }
+.navbar-inverse .navbar-nav>li>a{
+    color: whitesmoke;
+}
 .navbar-inverse .navbar-nav>li>a:hover, 
 .navbar-inverse .navbar-nav>li>a:focus {
     color: #FFDB64;
