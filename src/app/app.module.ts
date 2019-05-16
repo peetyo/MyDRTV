@@ -4,16 +4,19 @@ import { NgModule } from '@angular/core';
 // Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+// Login
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+// Portal
+import { PortalComponent } from './portal/portal.component';
 import { HomeComponent } from './portal/home/home.component';
-import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MoviesComponent } from './portal/movies/movies.component'
 
 // Imports
 import { RouterModule } from '@angular/router';
-import { PortalComponent } from './portal/portal.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { MoviesComponent } from './portal/movies/movies.component'
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { MoviesComponent } from './portal/movies/movies.component'
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'portal', component: PortalComponent,
-        // canActivate: [AuthGuard], 
+        canActivate: [AuthGuard], 
         children: [
         { path: '' , redirectTo: 'home', pathMatch: 'full'},
         { path: 'home',  component: HomeComponent },
