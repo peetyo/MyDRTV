@@ -12,7 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 // Imports
 import { RouterModule } from '@angular/router';
 import { PortalComponent } from './portal/portal.component';
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MoviesComponent } from './portal/movies/movies.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component'
     HomeComponent,
     FooterComponent,
     PortalComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +38,8 @@ import { NotFoundComponent } from './not-found/not-found.component'
         children: [
         { path: '' , redirectTo: 'home', pathMatch: 'full'},
         { path: 'home',  component: HomeComponent },
-        // { path: 'admin-list', component: AdminListComponent },
+        { path: 'movies',  component: MoviesComponent },
       ]},
-      // { path: 'login', component: LoginComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],

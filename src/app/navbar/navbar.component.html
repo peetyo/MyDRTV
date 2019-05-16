@@ -8,14 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img alt="logo" src="../../assets/dr-logo.png"></a>
+      <a class="navbar-brand" routerLink="portal/home"><img alt="logo" src="../../assets/dr-logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Movies</a></li>
+        <!-- add class active to li to light it up -->
+        <li><a routerLink="portal/home">Home</a></li>
+        <li><a routerLink="portal/movies">Movies</a></li>
         <li><a href="#">Series</a></li>
         <li><a href="#">Recently Added</a></li>
         <li><a href="#">My List</a></li>
