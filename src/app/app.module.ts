@@ -17,6 +17,10 @@ import { MoviesComponent } from './portal/movies/movies.component'
 // Imports
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { AuthGuard } from './auth/auth.guard';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     RouterModule.forRoot([
       { path: '' , redirectTo: '/portal', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
