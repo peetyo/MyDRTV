@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyDXfySvDcY_bbr4KJOEGbT7WowaEU2BqIg",
+    authDomain: "mydrtv-users-database.firebaseapp.com",
+    databaseURL: "https://mydrtv-users-database.firebaseio.com",
+    projectId: "mydrtv-users-database",
+    storageBucket: "mydrtv-users-database.appspot.com",
+    messagingSenderId: "89774255635",
+    appId: "1:89774255635:web:6332b3eb7f926658"
+  }
 };
 
 /*
