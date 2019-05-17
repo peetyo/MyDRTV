@@ -1,11 +1,16 @@
+
+
+.container>.row{
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+}
+
 .form-wrapper{
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
     
     border: 0px;
     box-shadow: none;
-    height: 60vh;
+    height: 65vh;
 
 }
 .form-wrapper p{
@@ -15,6 +20,7 @@
 }
 .panel-body{
     padding-left:0;
+    position: relative;
 }
 .form-control{
     margin-top: 5px;
@@ -27,7 +33,7 @@
 }
 
 hr{
-    border-top: 4px solid #FFD445;
+    border: 4px solid #FFD445;
 }
 
 .btn.btn-primary{
@@ -37,7 +43,9 @@ hr{
     font-weight: 600;
     font-size: 14px;
     text-transform: uppercase;
-    margin-left: 241px;
+    position: absolute;
+    width: 100px;
+    left: 220px;
     padding: 10px 15px;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -63,4 +71,18 @@ div.validation-error{
     margin-top: .25rem;
     font-size: 80%;
     color: crimson;
+}
+
+#gdpr-notice{
+    padding: 0;
+    margin-left: 20px;
+    height: 50%;
+}
+
+#gdpr-notice>.panel-heading{
+   font-weight: 800;
+}
+
+#gdpr-notice>.panel-body{
+    padding: 15px;
 }

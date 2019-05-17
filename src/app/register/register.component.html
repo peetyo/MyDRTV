@@ -1,51 +1,83 @@
 
-<div class="form-wrapper panel panel-default col-xs-12 col-sm-6">
-  <h2>Sign Up</h2>
-  <hr>
-  <div class="panel-body">
+<div class="container">
 
-      <p>Sign Up to access your TV programmes</p>
-      <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <h2>Sign Up</h2>
+    <hr>
 
-          <div class="form-group">
-              <label>
-                  EMAIL
-                  <input type="text" formControlName="email" class="form-control" placeholder="Your email">
-                  <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched" class="validation-error">This field is required.</div>
-                  <div *ngIf="!registerForm.controls.email.errors?.required && registerForm.controls.email.errors?.email && registerForm.controls.email.touched" class="validation-error">Please enter a valid email.</div>
-              </label>
+  <div class="row">
+
+      <div class="form-wrapper panel panel-default col-xs-12 col-sm-6">
+          
+          <div class="panel-body">
+        
+              <p>Sign Up to access your TV programmes</p>
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
+        
+                  <div class="form-group">
+                      <label>
+                          EMAIL
+                          <input type="text" formControlName="email" class="form-control" placeholder="Your email">
+                          <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched" class="validation-error">This field is required.</div>
+                          <div *ngIf="!registerForm.controls.email.errors?.required && registerForm.controls.email.errors?.email && registerForm.controls.email.touched" class="validation-error">Please enter a valid email.</div>
+                      </label>
+                  </div>
+        
+        
+                  <div class="form-group">
+                      <label>
+                          USERNAME
+                          <input type="text" formControlName="username" class="form-control" placeholder="Your username">
+                          <div *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched" class="validation-error">This field is required.</div>
+                      </label>
+                  </div>
+        
+                  <div class="form-group">
+                      <label>
+                          PASSWORD
+                          <input type="password" formControlName="password" class="form-control" placeholder="Your password">
+                          <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched" class="validation-error">This field is required.</div>
+                      </label>
+                  </div>
+        
+                  <div class="form-group">
+                      <label>
+                          REPEAT PASSWORD
+                          <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm password">
+                          <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.touched" class="validation-error">This field is required.</div>
+                          <div *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="validation-error">Passwords do not match.</div>
+                      </label>
+                  </div>
+        
+                  <div>
+                    <!-- ADAM: I'm not writing a custom validator for confirming passwords right now. I just have the button check if passwords match -->
+                      <button type="submit" [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="btn btn-primary ">Register</button>
+                  </div>
+              </form>
           </div>
+        </div>
+        <!-- end of form wrapper -->
 
+        <!-- start of gdpr wrapper -->
+        <div class="panel panel-default col-sm-4" id="gdpr-notice">
+            <div class="panel-heading">DR Privacy Notice</div>
+            <div class="panel-body">
+              DR only collects the personal information about you that you yourself submit to DR. This can be in the following situations:
 
-          <div class="form-group">
-              <label>
-                  USERNAME
-                  <input type="text" formControlName="username" class="form-control" placeholder="Your username">
-                  <div *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched" class="validation-error">This field is required.</div>
-              </label>
-          </div>
+                <ul>
+                  <li>you participate in our debates on dr.dk</li>
+                  <li>you have created a DR Login</li>
+                  <li>you have signed up for our newsletter</li>
+                  <li>you provide the information in connection with the use of one of DR’s apps or other services</li>
+                  <li>you submit content (photos, stories, characters, etc.) to DR</li>
+                </ul>
 
-          <div class="form-group">
-              <label>
-                  PASSWORD
-                  <input type="password" formControlName="password" class="form-control" placeholder="Your password">
-                  <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched" class="validation-error">This field is required.</div>
-              </label>
-          </div>
+              
+            </div>
+        </div>
 
-          <div class="form-group">
-              <label>
-                  REPEAT PASSWORD
-                  <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm password">
-                  <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.touched" class="validation-error">This field is required.</div>
-                  <div *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="validation-error">Passwords do not match.</div>
-              </label>
-          </div>
-
-          <div class="float-right">
-            <!-- ADAM: I'm not writing a custom validator for confirming passwords right now. I just have the button check if passwords match -->
-              <button type="submit" [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="btn btn-primary ">Register</button>
-          </div>
-      </form>
   </div>
 </div>
+
+
+
+
