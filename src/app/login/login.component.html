@@ -8,6 +8,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
                 <label>
+                    <div *ngIf="loginFailure" class="validation-error">Incorrect username or password.</div>
                     USERNAME
                     <input type="text" formControlName="username" class="form-control" placeholder="Your username">
                     <div *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched" class="validation-error">This field is required.</div>
