@@ -1,9 +1,12 @@
-
+.container{
+    width: 60%;
+}
 
 .container>.row{
     /* display: flex;
     flex-direction: row;
     justify-content: center; */
+    margin-right: 0;
 }
 
 .form-wrapper{
@@ -75,8 +78,9 @@ div.validation-error{
 
 #gdpr-notice{
     padding: 0;
-    margin-left: 20px;
     height: 50%;
+    margin-top: 20px;
+    /* margin-right: 15px; */
 }
 
 #gdpr-notice>.panel-heading{
