@@ -13,8 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private AuthService: AuthService, private router: Router, private formBuilder: FormBuilder,
-    private firestore: AngularFirestore) { 
+  constructor(private formBuilder: FormBuilder) { 
 
     this.registerForm = this.formBuilder.group({
 
@@ -30,7 +29,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    // console.log(this.registerForm.controls.value);
     console.log(this.registerForm.value);
+  }
+
+  register(){
+    // ADAM: Plug in database query and oauth here
+    console.log("Running register() function");
+    // console.log(this.registerForm.value);
   }
 
 }
