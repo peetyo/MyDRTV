@@ -44,7 +44,7 @@
                           REPEAT PASSWORD
                           <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm password">
                           <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.touched" class="validation-error">This field is required.</div>
-                          <div *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="validation-error">Passwords do not match.</div>
+                          <div *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value && registerForm.controls.confirmPassword.touched" class="validation-error">Passwords do not match.</div>
                       </label>
                   </div>
         
