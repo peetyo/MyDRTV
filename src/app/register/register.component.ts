@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private router: Router) { 
 
     this.registerForm = this.formBuilder.group({
 
@@ -28,14 +28,21 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    console.log("Runing onSubmit()");
-  }
+  // onSubmit(){
+  //   console.log("Runing onSubmit()");
+  // }
 
   register(){
-    // ADAM: Plug in database query and oauth here
-    console.log("Running register() function");
-    console.log(this.registerForm.value);
+    let data = Object.assign({},this.registerForm.value);
+    delete data.confirmPassword;
+    this.firestore.collection('users').add(data);
+    this.router.navigate(['login']); 
   }
+
+  // register(){
+  //   // ADAM: Plug in database query and oauth here
+  //   console.log("Running register() function");
+  //   console.log(this.registerForm.value);
+  // }
 
 }
