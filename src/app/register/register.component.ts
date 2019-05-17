@@ -29,14 +29,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    // console.log(this.registerForm.controls.value);
-    console.log(this.registerForm.value);
+    console.log("Runing onSubmit()");
   }
 
   register(){
     // ADAM: Plug in database query and oauth here
     console.log("Running register() function");
-    // console.log(this.registerForm.value);
+    console.log(this.registerForm.value);
   }
 
 }
