@@ -13,13 +13,17 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private router: Router) { 
+  constructor(
+    private formBuilder: FormBuilder, 
+    private firestore: AngularFirestore, 
+    private router: Router, 
+    private AuthService: AuthService) { 
 
     this.registerForm = this.formBuilder.group({
 
-      'username': ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
+      'fullName': ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
       'email': ['', [Validators.required, Validators.email]],
-      'password': ['', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
+      'password': ['', [Validators.required,Validators.minLength(6),Validators.maxLength(20)]],
       'confirmPassword': ['', [Validators.required]],
       
     });
@@ -31,7 +35,11 @@ export class RegisterComponent implements OnInit {
   // onSubmit(){
   //   console.log("Runing onSubmit()");
   // }
-
+  registerWithAuth(){
+    const formData = Object.assign({},this.registerForm.value);
+    delete formData.confirmPassword;
+    this.AuthService.register(formData);
+  }
   register(){
     let data = Object.assign({},this.registerForm.value);
     delete data.confirmPassword;
