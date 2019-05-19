@@ -23,10 +23,9 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin().pipe(map(data => {
       if (data == false) {
         this.ngZone.run(() => this.router.navigate(['/login']));
-        // this.router.navigate(['/login']);
+        this.authService.redirectUrl = url
         return data;
       }else if(data == true){
-        // this.router.navigate(['/login']);
         return data; 
       }
     }, error =>{ return error} 
