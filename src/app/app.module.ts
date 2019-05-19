@@ -43,7 +43,7 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      { path: '' , redirectTo: '/portal', pathMatch: 'full'},
+      { path: '' , redirectTo: '/portal/home', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'portal', component: PortalComponent,

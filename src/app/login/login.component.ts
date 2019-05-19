@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginFailure = false;
-    console.log(this.AuthService.isLoggedIn)
   }
   login(){
     const formData = Object.assign({},this.loginForm.value)

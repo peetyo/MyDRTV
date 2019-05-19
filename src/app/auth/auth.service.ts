@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from  "@angular/fire/auth";
@@ -11,6 +11,8 @@ import { AngularFireAuth } from  "@angular/fire/auth";
 export class AuthService {
   isLoggedIn: boolean;
   // user: {}
+  private isAuthenticatedSubject = new ReplaySubject<boolean>(0);
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
@@ -19,8 +21,22 @@ export class AuthService {
     // if (localStorage.getItem("isLoggedIn") !== null) {
     //   this.isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"))
     // }
-    this.checkIfLoggedIn()
+    // this.checkIfLoggedIn()
    }
+   setAuth() {
+    this.firebaseAuth.auth.onAuthStateChanged(user => {
+      if(user){
+        console.log("User logged in", user)
+        this.isLoggedIn = true;
+        console.log(this.isLoggedIn)
+        this.isAuthenticatedSubject.next(true);
+      }else{
+        console.log("User logged out")
+        this.isLoggedIn = false;
+        this.isAuthenticatedSubject.next(false);
+      }
+    })
+  }
   register(formData){
     const email = formData.email;
     const password = formData.password;
@@ -32,6 +48,7 @@ export class AuthService {
     })
   }
   loginWithAuth(loginData){
+    console.log('loginWithAuth');
     const email = loginData.email;
     const password = loginData.password;
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email,password).then(cred => { return true;
