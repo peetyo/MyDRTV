@@ -10,19 +10,13 @@ import { AngularFireAuth } from  "@angular/fire/auth";
 })
 export class AuthService {
   isLoggedIn: boolean;
-  // user: {}
   private isAuthenticatedSubject = new ReplaySubject<boolean>(0);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private firestore : AngularFirestore, private firebaseAuth:  AngularFireAuth) {
-    // if (localStorage.getItem("isLoggedIn") !== null) {
-    //   this.isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"))
-    // }
-    // this.checkIfLoggedIn()
-   }
+  constructor(private firestore : AngularFirestore, private firebaseAuth:  AngularFireAuth) {   }
    setAuth() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){
@@ -54,15 +48,6 @@ export class AuthService {
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email,password).then(cred => { return true;
     }).catch(error =>{return false})
   }
-  // login(loginData) {
-  //   console.log('AuthService.login()')
-  //   return this.firestore.collection('users', ref => ref.where('username','==',loginData.username).where('password','==',loginData.password)).snapshotChanges();
-  // }
-  
-  // logout(): void {
-  //   this.isLoggedIn = false;
-  //   localStorage.clear();
-  // }
   checkIfLoggedIn(){
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){

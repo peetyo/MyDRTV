@@ -10,8 +10,6 @@ import { take,map } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private ngZone: NgZone) {
-
-    
     this.authService.setAuth()
   }
 
