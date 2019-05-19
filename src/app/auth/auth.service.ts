@@ -4,6 +4,7 @@ import { Observable, of, ReplaySubject } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from  "@angular/fire/auth";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private firestore : AngularFirestore, private firebaseAuth:  AngularFireAuth) {   }
+  constructor(private firestore : AngularFirestore, private firebaseAuth:  AngularFireAuth, private router: Router) {   }
    setAuth() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){
@@ -34,8 +35,32 @@ export class AuthService {
   register(formData){
     const email = formData.email;
     const password = formData.password;
-    this.firebaseAuth.auth.createUserWithEmailAndPassword(email,password).then(cred => {
+    const fullName = formData.fullName;
+    // this.firebaseAuth.auth.createUserWithEmailAndPassword(email,password).then(cred => {})
+    this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password).then(credentials =>{
+
+      if(credentials.user){
+        credentials.user.updateProfile({
+          displayName: fullName
+        })
+        .then(()=>{ 
+            return this.firebaseAuth.auth.onAuthStateChanged(user => {
+              if (user) {
+                console.log(user);
+                this.router.navigate(['portal/home'])
+              }else{
+                console.log("User was not logged in")
+              }
+            });
+          })
+        }else{
+          console.log("User was not created")
+      }
     })
+    .catch(function(error) {
+      console.error("Internal Server error", error)
+    });
+   
   }
   logoutWithAuth(){
     this.firebaseAuth.auth.signOut().then(()=>{
