@@ -11,7 +11,7 @@
           <div class="panel-body">
         
               <p>Sign Up to access your TV programmes</p>
-              <form [formGroup]="registerForm" (ngSubmit)="register()">
+              <form [formGroup]="registerForm" (ngSubmit)="registerWithAuth()">
         
                   <div class="form-group">
                       <label>
@@ -25,11 +25,11 @@
         
                   <div class="form-group">
                       <label>
-                          USERNAME
-                          <input type="text" formControlName="username" class="form-control" placeholder="Your username">
-                          <div *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched" class="validation-error">This field is required.</div>
-                          <div *ngIf="registerForm.controls.username.errors?.minlength && registerForm.controls.username.touched" class="validation-error">Username must be at least 5 characters.</div>
-                          <div *ngIf="registerForm.controls.username.errors?.maxlength && registerForm.controls.username.touched" class="validation-error">Username must be less than 20 characters.</div>
+                          FULL NAME
+                          <input type="text" formControlName="fullName" class="form-control" placeholder="Your full name">
+                          <div *ngIf="registerForm.controls.fullName.errors?.required && registerForm.controls.fullName.touched" class="validation-error">This field is required.</div>
+                          <div *ngIf="registerForm.controls.fullName.errors?.minlength && registerForm.controls.fullName.touched" class="validation-error">Your name must be at least 5 characters.</div>
+                          <div *ngIf="registerForm.controls.fullName.errors?.maxlength && registerForm.controls.fullName.touched" class="validation-error">Your name must be less than 20 characters.</div>
                         </label>
                     </div>
                     
@@ -38,7 +38,7 @@
                             PASSWORD
                             <input type="password" formControlName="password" class="form-control" placeholder="Your password">
                             <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched" class="validation-error">This field is required.</div>
-                            <div *ngIf="registerForm.controls.password.errors?.minlength && registerForm.controls.password.touched" class="validation-error">Password must be at least 5 characters.</div>
+                            <div *ngIf="registerForm.controls.password.errors?.minlength && registerForm.controls.password.touched" class="validation-error">Password must be at least 6 characters.</div>
                             <div *ngIf="registerForm.controls.password.errors?.maxlength && registerForm.controls.password.touched" class="validation-error">Password must be less than 20 characters.</div>
                       </label>
                   </div>

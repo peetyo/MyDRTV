@@ -15,11 +15,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MoviesComponent } from './portal/movies/movies.component'
 
 // Imports
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -40,8 +41,9 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     RouterModule.forRoot([
-      { path: '' , redirectTo: '/portal', pathMatch: 'full'},
+      { path: '' , redirectTo: '/portal/home', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'portal', component: PortalComponent,
@@ -52,7 +54,7 @@ import { environment } from 'src/environments/environment';
         { path: 'movies',  component: MoviesComponent },
       ]},
       { path: '**', component: NotFoundComponent }
-    ])
+    ],{ useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [],
   bootstrap: [AppComponent]
