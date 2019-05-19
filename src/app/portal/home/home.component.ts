@@ -10,45 +10,16 @@ import { MovieShort } from 'src/app/models/movie-short.model';
 export class HomeComponent implements OnInit {
 
   movieList: MovieShort[];
-  movieListTest: MovieShort[] = [
-    {
-    id: "testid",
-    title: "A Star Is Born",
-    thumbnail_url: "thumbnail_a_star_is_born.jpg",
-    star_rating:"8.5",
-    duration:"136",
-    genres: ["drama" , "music", "romance"]
-    },
-    {
-      id: "testid",
-      title: "A Star Is Born",
-      thumbnail_url: "thumbnail_a_star_is_born.jpg",
-      star_rating:"8.5",
-      duration:"136",
-      genres: ["drama" , "music", "romance"]
-      },
-      {
-        id: "testid",
-        title: "A Star Is Born",
-        thumbnail_url: "thumbnail_a_star_is_born.jpg",
-        star_rating:"8.5",
-        duration:"136",
-        genres: ["drama" , "music", "romance"]
-        },
-        {
-          id: "testid",
-          title: "A Star Is Born",
-          thumbnail_url: "thumbnail_a_star_is_born.jpg",
-          star_rating:"8.5",
-          duration:"136",
-          genres: ["drama" , "music", "romance"]
-          },
-  ];
+  movieListNew: MovieShort[];
+  movieListPopular: MovieShort[];
+  movieListMyList: MovieShort[];
 
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.getMovieList('getMovieList', 'movieList');
+    this.getMovieList('getMovieListNew', 'movieListNew');
+    this.getMovieList('getMovieListPopular', 'movieListPopular');
   }
   getMovieList(method,listName){
     this.moviesService[method]().subscribe(actionArray =>{
