@@ -36,7 +36,6 @@ export class AuthService {
     const email = formData.email;
     const password = formData.password;
     const fullName = formData.fullName;
-    // this.firebaseAuth.auth.createUserWithEmailAndPassword(email,password).then(cred => {})
     this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password).then(credentials =>{
 
       if(credentials.user){
@@ -46,15 +45,15 @@ export class AuthService {
         .then(()=>{ 
             return this.firebaseAuth.auth.onAuthStateChanged(user => {
               if (user) {
-                console.log(user);
+                // console.log(user);
                 this.router.navigate(['portal/home'])
               }else{
-                console.log("User was not logged in")
+                console.error("User was not logged in")
               }
             });
           })
         }else{
-          console.log("User was not created")
+          console.error("User was not created")
       }
     })
     .catch(function(error) {
