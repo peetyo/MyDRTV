@@ -23,7 +23,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
-import { MovieComponent } from './movies/movie/movie.component';
+import { MovieComponent } from './portal/movies/movie/movie.component';
 
 @NgModule({
   declarations: [
