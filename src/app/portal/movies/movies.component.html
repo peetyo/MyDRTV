@@ -1,20 +1,19 @@
 <div id="moviesWrapper">
 
-<a routerLink="{{movie.id}}" *ngFor="let movie of movieFullList">
+<a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieFullList">
     <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
         <div class="card-info">
             <div class="movie-detail movie-title"><span>{{ movie.title }}</span></div>
             <div class="movie-detail movie-duration">
-              <span>{{ movie.duration }} Minutes | </span>
               <span>&#9733; {{ movie.star_rating }} | </span>
-              <span>Match: 74%</span>
+              <span class="movie-genre">{{ movie.genres[0] }} | </span>
+              <span class="movie-genre">{{ movie.genres[1] }} | </span>
+              <span class="movie-genre">{{ movie.genres[2] }} </span>
+
             </div>
             <div class="movie-detail movie-genres">
-              <span class="movie-genre">{{ movie.genres[0] }} </span>
-              <span class="movie-genre">{{ movie.genres[1] }} </span>
-              <span class="movie-genre">{{ movie.genres[2] }} </span>
-              <span class="movie-genre">{{ movie.genres[3] }} </span>
-              <span class="movie-genre">{{ movie.genres[4] }} </span>
+              <span class="match"> 74% Match  </span>|
+              <span> {{ movie.duration }} Minutes </span>
             </div>
             
         </div>
