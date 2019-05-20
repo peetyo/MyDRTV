@@ -7,8 +7,9 @@
       <a routerLink="{{movie.id}}" *ngFor="let movie of movieList">
           <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
               <div class="card-info">
+                  <!-- <h4>{{ movie.title | uppercase}}</h4> Basic Pipe for display the string in uppercase -->
                   <h4>{{ movie.title }}</h4>
-                  <!-- <p>Barry Allen's life changed completely</p> -->
+                  <p>{{ movie.duration | duration }}</p>
               </div>
             </div>
         </a>

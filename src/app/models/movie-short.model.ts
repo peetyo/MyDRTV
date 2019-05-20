@@ -4,6 +4,6 @@ export class MovieShort {
     title: string;
     thumbnail_url: string;
     star_rating: string;
-    duration: string;
+    duration: number;
     genres: string[];
 }
