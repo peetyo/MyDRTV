@@ -78,10 +78,12 @@
     font-weight: 600;
   }
   
-  .card-info p {
-    -webkit-transition: .2s;
-    transition: .2s;
-    opacity: 0;
+  .card-info span {
+    opacity: .9;
+  }
+
+  .title span {
+    opacity: 1;
   }
 
   .card-info span.match{

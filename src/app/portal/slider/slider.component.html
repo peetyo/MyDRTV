@@ -3,16 +3,25 @@
 
 <div class="slider-wrapper">
     <div class="scrolling-wrapper">
-          <!-- <a routerLink="../../portal/movies" *ngFor="let movie of movieList"></a> -->
-      <a routerLink="{{movie.id}}" *ngFor="let movie of movieList">
-          <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
-              <div class="card-info">
-                  <!-- <h4>{{ movie.title | uppercase}}</h4> Basic Pipe for display the string in uppercase -->
-                  <h4>{{ movie.title }}</h4>
-                  <p>{{ movie.duration | duration }}</p>
-              </div>
-            </div>
-        </a>
+            <a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieList">
+                    <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
+                        <div class="card-info">
+                            <div class="movie-detail movie-title"><span class="title">{{ movie.title }}</span></div>
+                            <div class="movie-detail movie-duration">
+                              <span>&#9733; {{ movie.star_rating }} | </span>
+                              <span class="movie-genre">{{ movie.genres[0] }} | </span>
+                              <span class="movie-genre">{{ movie.genres[1] }} | </span>
+                              <span class="movie-genre">{{ movie.genres[2] }} </span>
+                
+                            </div>
+                            <div class="movie-detail movie-genres">
+                              <span class="match"> 74% Match  </span>|
+                              <span> {{ movie.duration | duration}}</span>
+                            </div>
+                            
+                        </div>
+                      </div>
+                  </a>
     </div>
     <a class="left carousel-control" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
