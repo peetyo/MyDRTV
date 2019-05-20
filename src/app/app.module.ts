@@ -22,6 +22,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
+import { SliderComponent } from './portal/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { environment } from 'src/environments/environment';
     FooterComponent,
     PortalComponent,
     NotFoundComponent,
-    MoviesComponent
+    MoviesComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

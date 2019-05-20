@@ -1,0 +1,24 @@
+
+
+
+<div class="slider-wrapper">
+    <div class="scrolling-wrapper">
+          <!-- <a routerLink="../../portal/movies" *ngFor="let movie of movieList"></a> -->
+      <a routerLink="{{movie.id}}" *ngFor="let movie of movieList">
+          <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
+              <div class="card-info">
+                  <h4>{{ movie.title }}</h4>
+                  <!-- <p>Barry Allen's life changed completely</p> -->
+              </div>
+            </div>
+        </a>
+    </div>
+    <a class="left carousel-control" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+</div>
