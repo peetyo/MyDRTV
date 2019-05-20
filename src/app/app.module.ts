@@ -23,6 +23,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SliderComponent } from './portal/slider/slider.component';
     PortalComponent,
     NotFoundComponent,
     MoviesComponent,
-    SliderComponent
+    SliderComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
