@@ -17,4 +17,7 @@ export class MoviesService {
   getMovieListPopular(){
     return this.firestore.collection('movielist', ref => ref.where('star_rating','>',7).limit(10)).snapshotChanges();
   }
+  getAllMovies(){
+    return this.firestore.collection('movielist').snapshotChanges();
+  }
 }
