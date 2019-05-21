@@ -47,10 +47,10 @@ export class AuthService {
         .then(()=>{ 
           //Redux 
           this.store.dispatch(new AuthActions.Signup());
-          this.router.navigate(['portal/home'])
           this.firebaseAuth.auth.currentUser.getIdToken()
-            .then((token:string) =>{
-              this.store.dispatch(new AuthActions.SetToken(token))
+          .then((token:string) =>{
+            this.store.dispatch(new AuthActions.SetToken(token))
+            this.router.navigate(['portal/home'])
             })
           }, (error)=>{ console.log("Error when updating display name", error)})
         }else{
