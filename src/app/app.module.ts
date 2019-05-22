@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // Components
 import { AppComponent } from './app.component';
@@ -24,6 +25,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
 import { DurationPipe } from './pipes/duration.pipe';
+// Redux
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { DurationPipe } from './pipes/duration.pipe';
         { path: 'movies',  component: MoviesComponent },
       ]},
       { path: '**', component: NotFoundComponent }
-    ],{ useHash: true, preloadingStrategy: PreloadAllModules })
+    ],{ useHash: true, preloadingStrategy: PreloadAllModules }),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
