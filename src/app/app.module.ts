@@ -28,6 +28,8 @@ import { DurationPipe } from './pipes/duration.pipe';
 // Redux
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
+import { SearchPipe } from './pipes/search.pipe';
+import { GenrePipe } from './pipes/genre.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { reducers } from './store/app.reducers';
     NotFoundComponent,
     MoviesComponent,
     SliderComponent,
-    DurationPipe
+    DurationPipe,
+    SearchPipe,
+    GenrePipe
   ],
   imports: [
     BrowserModule,
