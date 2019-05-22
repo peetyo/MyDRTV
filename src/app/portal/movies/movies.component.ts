@@ -10,6 +10,8 @@ import { MovieShort } from '../../models/movie-short.model';
 export class MoviesComponent implements OnInit {
 
   movieFullList: MovieShort[];
+  searchText: string;
+  filterGenres: string;
   // you gotta define movieshort yourself, or import it
 
   constructor(private moviesService: MoviesService) { 
@@ -23,7 +25,7 @@ export class MoviesComponent implements OnInit {
   getAllMovies(){
     this.moviesService.getAllMovies().subscribe(actionArray => {
       this.movieFullList = actionArray.map(item => {
-        console.log(item.payload.doc.data());
+        // console.log(item.payload.doc.data());
         return {
           id : item.payload.doc.id,
           ...item.payload.doc.data()} as MovieShort
