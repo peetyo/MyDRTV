@@ -22,10 +22,9 @@ export class AuthService {
    setAuth() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){
-        console.log("User logged in", user)
-        this.store.dispatch(new AuthActions.Signin());
+        this.store.dispatch(new AuthActions.Signin(user));
         this.firebaseAuth.auth.currentUser.getIdToken()
-          .then((token:string) =>{
+        .then((token:string) =>{
             this.store.dispatch(new AuthActions.SetToken(token))
           })
       }else{
@@ -45,8 +44,7 @@ export class AuthService {
           displayName: fullName
         })
         .then(()=>{ 
-          //Redux 
-          this.store.dispatch(new AuthActions.Signup());
+          this.store.dispatch(new AuthActions.Signup(credentials.user));
           this.firebaseAuth.auth.currentUser.getIdToken()
           .then((token:string) =>{
             this.store.dispatch(new AuthActions.SetToken(token))
@@ -67,13 +65,11 @@ export class AuthService {
     this.store.dispatch(new AuthActions.Logout());
   }
   loginWithAuth(loginData){
-    // Remove return and  use the store state.
-    console.log('loginWithAuth');
     const email = loginData.email;
     const password = loginData.password;
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email,password)
     .then(cred => { 
-      this.store.dispatch(new AuthActions.Signin());
+      this.store.dispatch(new AuthActions.Signin(cred.user));
       this.router.navigate(['portal']); 
       this.firebaseAuth.auth.currentUser.getIdToken()
         .then((token:string) =>{
