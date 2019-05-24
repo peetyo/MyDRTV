@@ -30,6 +30,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 import { SearchPipe } from './pipes/search.pipe';
 import { GenrePipe } from './pipes/genre.pipe';
+import { RatingPipe } from './pipes/rating.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { GenrePipe } from './pipes/genre.pipe';
     SliderComponent,
     DurationPipe,
     SearchPipe,
-    GenrePipe
+    GenrePipe,
+    RatingPipe,
   ],
   imports: [
     BrowserModule,

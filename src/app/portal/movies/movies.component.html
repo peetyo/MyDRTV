@@ -1,3 +1,16 @@
+<span>Filter Ratings:</span>
+<select [(ngModel)]="filterRating" name="Genres">
+    <option value=1>&#9733; 1+</option>
+    <option value=2>&#9733; 2+</option>
+    <option value=3>&#9733; 3+</option>
+    <option value=4>&#9733; 4+</option>
+    <option value=5>&#9733; 5+</option>
+    <option value=6>&#9733; 6+</option>
+    <option value=7>&#9733; 7+</option>
+    <option value=8>&#9733; 8+</option>
+</select>
+
+<span>Filter Genres:</span>
 <select [(ngModel)]="filterGenres" name="Genres">
     <option value="">All Genres</option>
     <option value="action">Action</option>
@@ -17,7 +30,7 @@
   
 <div id="moviesWrapper">
 
-<a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieFullList | search : searchText | genre : filterGenres">
+<a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieFullList | search : searchText | genre : filterGenres | rating: filterRating">
     <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
         <div class="card-info">
             <div class="movie-detail movie-title"><span class="title">{{ movie.title }}</span></div>
