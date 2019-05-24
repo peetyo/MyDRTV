@@ -38,12 +38,16 @@ export function authReducer(state = initialState, action: any){
                 ...state,
                 ...action.payload
             };
-        case (MovieActions.GET_REVIEWS):
-            return {
-                ...state,
-                reviews: action.payload
-            };
-        default: 
+            case (MovieActions.GET_REVIEWS):
+                return {
+                    ...state,
+                    reviews: action.payload
+                };
+            case (MovieActions.CLEAR_MOVIE):
+                return {
+                   ...initialState
+                };
+            default: 
             return state;
     }
 }
