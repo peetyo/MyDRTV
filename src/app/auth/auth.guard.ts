@@ -19,15 +19,15 @@ export class AuthGuard implements CanActivate {
     private ngZone: NgZone,
     private store: Store<fromApp.AppState>) {
 
-      this.authService.setAuth()
-  }
-
+    }
+    
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean>  | boolean{
     // could add redirect URL to the store
     let url: string = state.url;
-      
+        
+    this.authService.setAuth()
     return this.store.select('auth').pipe(skip(1),map((authState: fromAuth.State) =>{
       if(authState.authenticated == false){
         this.ngZone.run(() => this.router.navigate(['/login']));
