@@ -2,6 +2,7 @@
   main {
     background-color: #1d1d1d;
     padding-bottom: 20px;
+    min-height: 700px;
   }
   #featured-show {
     height: 75vh;
@@ -150,6 +151,7 @@
     color: #4D4D4D;
     padding: 20px;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .review-container .star{
