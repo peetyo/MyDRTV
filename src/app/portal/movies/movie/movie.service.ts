@@ -14,7 +14,7 @@ export class MovieService {
   constructor(private firestore : AngularFirestore,private store: Store<fromApp.AppState>) { }
 
   getMovie(movieId: string){
-      movieId = "274eCdHpwPdHrnd20Ndw";
+      // movieId = "274eCdHpwPdHrnd20Ndw";
       this.firestore.collection('movies').doc(movieId).snapshotChanges().subscribe(movieDoc => {
         let movieObject = {id: movieDoc.payload.id,
           ...movieDoc.payload.data()}

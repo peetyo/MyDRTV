@@ -3,7 +3,7 @@
 
 <div class="slider-wrapper">
     <div class="scrolling-wrapper">
-            <a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieList">
+            <a routerLink="../movies/{{movie.movie_id}}" *ngFor="let movie of movieList">
                     <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
                         <div class="card-info">
                             <div class="movie-detail movie-title"><span class="title">{{ movie.title }}</span></div>
