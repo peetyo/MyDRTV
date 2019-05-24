@@ -14,14 +14,23 @@ export class MovieService {
   constructor(private firestore : AngularFirestore,private store: Store<fromApp.AppState>) { }
 
   getMovie(movieId: string){
-      // movieId = "274eCdHpwPdHrnd20Ndw";
-      this.firestore.collection('movies').doc(movieId).snapshotChanges().subscribe(movieDoc => {
-        let movieObject = {id: movieDoc.payload.id,
-          ...movieDoc.payload.data()}
+      // Get the movie data;
+    this.firestore.collection('movies').doc(movieId).snapshotChanges().subscribe(movieDoc => {
+      let movieObject = {id: movieDoc.payload.id,
+        ...movieDoc.payload.data()}
 
       this.store.dispatch(new MovieActions.GetMovie(movieObject));
         console.log(movieObject)
+        // Get the reviews
+      this.firestore.collection('movies').doc(movieId).collection('reviews').snapshotChanges().subscribe(actionArray => {
+        let reviews = actionArray.map(reviewDoc => {
+          console.log(reviewDoc.payload.doc.data());
+          return {
+            id : reviewDoc.payload.doc.id,
+            ...reviewDoc.payload.doc.data()}
+        })
       });
+    })
   }
   
   getReviews(movieId: string){

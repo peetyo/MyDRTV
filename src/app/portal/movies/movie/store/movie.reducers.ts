@@ -13,6 +13,7 @@ export interface State {
     star_rating: number;
     storyline: string;
     title: string;
+    reviews: [];
 }
 const initialState: State = {
     actors: [],
@@ -26,7 +27,8 @@ const initialState: State = {
     release_year: null,
     star_rating: null,
     storyline: null,
-    title: null
+    title: null,
+    reviews: []
 }
 
 export function authReducer(state = initialState, action: any){
