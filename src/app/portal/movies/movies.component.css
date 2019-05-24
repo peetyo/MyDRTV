@@ -11,14 +11,57 @@
 
   #moviesWrapper{
     background-color: black;
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly; */
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);
     justify-content: space-evenly;
   }
+
+  #movies-filter-panel{
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+
+  /* this contains a movies-filter-label and a movies-filter-control (only for filters which have a label) */
+  .movies-filter{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .movies-filter-control{
+    background-color: #212121;
+    color: white;
+    width: 200px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0;
+  }
+
+  .movies-filter-control.genre{
+    width: 100px;
+  }
+
+  .movies-filter-control.search{
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    text-align: center;
+    width: 500px;
+  }
+
+  .movies-filter-label{
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
   
   .card {
     border: 3px solid #222;
@@ -109,5 +152,3 @@
       justify-content: center;
       margin-bottom: 2px;
   }
-
-  
