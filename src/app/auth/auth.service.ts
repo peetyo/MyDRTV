@@ -15,7 +15,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private firestore : AngularFirestore,
+  constructor(
     private firebaseAuth:  AngularFireAuth,
     private router: Router,
     private store: Store<fromApp.AppState>) {   }
@@ -34,7 +34,7 @@ export class AuthService {
       }
     })
   }
-  
+
   register(formData){
     const email = formData.email;
     const password = formData.password;

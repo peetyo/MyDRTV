@@ -34,10 +34,7 @@ export function authReducer(state = initialState, action: any){
         case (MovieActions.GET_MOVIE):
             return {
                 ...state,
-                authenticated: true,
-                displayName: action.payload.displayName,
-                email: action.payload.email,
-                uid: action.payload.uid
+                ...action.payload
             };
         default: 
             return state;
