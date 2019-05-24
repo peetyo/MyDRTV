@@ -13,7 +13,7 @@ export interface State {
     star_rating: number;
     storyline: string;
     title: string;
-    reviews: [];
+    reviews: any[];
 }
 const initialState: State = {
     actors: [],
@@ -37,6 +37,11 @@ export function authReducer(state = initialState, action: any){
             return {
                 ...state,
                 ...action.payload
+            };
+        case (MovieActions.GET_REVIEWS):
+            return {
+                ...state,
+                reviews: action.payload
             };
         default: 
             return state;

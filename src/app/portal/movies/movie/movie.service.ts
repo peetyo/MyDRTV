@@ -20,22 +20,17 @@ export class MovieService {
         ...movieDoc.payload.data()}
 
       this.store.dispatch(new MovieActions.GetMovie(movieObject));
-        console.log(movieObject)
-        // Get the reviews
+      console.log(movieObject)
+      // Get the reviews
       this.firestore.collection('movies').doc(movieId).collection('reviews').snapshotChanges().subscribe(actionArray => {
         let reviews = actionArray.map(reviewDoc => {
           console.log(reviewDoc.payload.doc.data());
           return {
             id : reviewDoc.payload.doc.id,
             ...reviewDoc.payload.doc.data()}
-        })
+          })
+        this.store.dispatch(new MovieActions.GetReviews(reviews));
       });
     })
   }
-  
-  getReviews(movieId: string){
-      movieId = "274eCdHpwPdHrnd20Ndw";
-      return this.firestore.collection('movies').doc(movieId).collection('reviews').snapshotChanges();
-  }
-
 }
