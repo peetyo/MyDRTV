@@ -25,6 +25,7 @@ import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
 import { MovieComponent } from './portal/movies/movie/movie.component';
 import { DurationPipe } from './pipes/duration.pipe';
+import { MovieListComponent } from './portal/movies/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DurationPipe } from './pipes/duration.pipe';
     MoviesComponent,
     SliderComponent,
     MovieComponent,
-    DurationPipe
+    DurationPipe,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,11 @@ import { DurationPipe } from './pipes/duration.pipe';
         children: [
         { path: '' , redirectTo: 'home', pathMatch: 'full'},
         { path: 'home',  component: HomeComponent },
-        { path: 'movies',  component: MoviesComponent },
+        { path: 'movies',  component: MoviesComponent , children: [
+          { path: ':id',  component: MovieComponent },
+          { path: '',  component: MovieListComponent }
+        ]},
+        
       ]},
       { path: '**', component: NotFoundComponent }
     ],{ useHash: true, preloadingStrategy: PreloadAllModules })
