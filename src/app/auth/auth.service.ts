@@ -19,7 +19,8 @@ export class AuthService {
     private firebaseAuth:  AngularFireAuth,
     private router: Router,
     private store: Store<fromApp.AppState>) {   }
-   setAuth() {
+  
+  setAuth() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){
         this.store.dispatch(new AuthActions.Signin(user));
@@ -33,6 +34,7 @@ export class AuthService {
       }
     })
   }
+  
   register(formData){
     const email = formData.email;
     const password = formData.password;
