@@ -24,12 +24,14 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
+import { MovieComponent } from './portal/movies/movie/movie.component';
 import { DurationPipe } from './pipes/duration.pipe';
 // Redux
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 import { SearchPipe } from './pipes/search.pipe';
 import { GenrePipe } from './pipes/genre.pipe';
+import { MovieListComponent } from './portal/movies/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { GenrePipe } from './pipes/genre.pipe';
     PortalComponent,
     NotFoundComponent,
     MoviesComponent,
+    MovieComponent,
+    MovieListComponent,
     SliderComponent,
     DurationPipe,
     SearchPipe,
@@ -63,7 +67,11 @@ import { GenrePipe } from './pipes/genre.pipe';
         children: [
         { path: '' , redirectTo: 'home', pathMatch: 'full'},
         { path: 'home',  component: HomeComponent },
-        { path: 'movies',  component: MoviesComponent },
+        { path: 'movies',  component: MoviesComponent , children: [
+          { path: ':id',  component: MovieComponent },
+          { path: '',  component: MovieListComponent }
+        ]},
+        
       ]},
       { path: '**', component: NotFoundComponent }
     ],{ useHash: true, preloadingStrategy: PreloadAllModules }),
