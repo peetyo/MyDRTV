@@ -25,13 +25,15 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from 'src/environments/environment';
 import { SliderComponent } from './portal/slider/slider.component';
 import { MovieComponent } from './portal/movies/movie/movie.component';
-import { DurationPipe } from './pipes/duration.pipe';
+import { MovieListComponent } from './portal/movies/movie-list/movie-list.component';
 // Redux
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
+// Pipes
 import { SearchPipe } from './pipes/search.pipe';
 import { GenrePipe } from './pipes/genre.pipe';
-import { MovieListComponent } from './portal/movies/movie-list/movie-list.component';
+import { RatingPipe } from './pipes/rating.pipe';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { MovieListComponent } from './portal/movies/movie-list/movie-list.compon
     SliderComponent,
     DurationPipe,
     SearchPipe,
-    GenrePipe
+    GenrePipe,
+    RatingPipe
   ],
   imports: [
     BrowserModule,
