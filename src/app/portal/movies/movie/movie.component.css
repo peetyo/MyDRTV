@@ -120,6 +120,11 @@
 .add-review-container h4, #allReviews h4{
     font-weight: bold;
 }
+#more-shows{
+    font-weight: bold;
+    color: whitesmoke;
+    margin-left: 60px;
+}
 
 #reviewForm{
     background-color: #4d4d4d;
