@@ -11,7 +11,9 @@ export class SearchPipe implements PipeTransform {
 
     let result = movies.filter(movie => 
       movie.title.toLowerCase().includes(searchText) || 
-      movie.genres.join('').includes(searchText)
+      movie.genres.join('').includes(searchText) ||
+      movie.keywords.join('').includes(searchText) ||
+      movie.actors.join('').toLowerCase().includes(searchText)
       );
     
     return result;
