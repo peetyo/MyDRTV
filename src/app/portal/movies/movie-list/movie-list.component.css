@@ -8,7 +8,52 @@
   h2 {
     color: whitesmoke;
   }
+  /* Styling the filters */
+  #movies-filter-panel{
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  .movies-filter{
+    display: flex;
+    flex-direction: row;
+  }
 
+  .movies-filter-control{
+    background-color: #212121;
+    color: white;
+    width: 200px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0;
+  }
+
+  .movies-filter-control.genre{
+    width: 100px;
+  }
+  select {
+    text-indent: 5px;
+  }
+  .movies-filter-control.search{
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    text-align: left;
+    width: 300px;
+  }
+
+  .movies-filter-label{
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+/* Styling the movies grid */
   #moviesWrapper{
     background-color: black;
     /* display: flex;

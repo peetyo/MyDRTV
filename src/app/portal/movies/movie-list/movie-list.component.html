@@ -1,19 +1,31 @@
-<select [(ngModel)]="filterGenres" name="Genres">
-  <option value="">All Genres</option>
-  <option value="action">Action</option>
-  <option value="sci-fi">Sci-Fi</option>
-  <option value="adventure">adventure</option>
-  <option value="comedy">Comedy</option>
-  <option value="family">Family</option>
-  <option value="drama">Drama</option>
-  <option value="mystery">Mystery</option>
-  <option value="thriller">Thriller</option>
-  <option value="romance">Romance</option>
-  <option value="cyberpunk">Cyberpunk</option>
-  <option value="crime">Crime</option>
-  <option value="fantasy">Fantasy</option>
-</select>
-<input type="text" [(ngModel)]="searchText" placeholder="search">
+<div id="movies-filter-panel">
+
+  <div class="movies-filter">
+    <div class="movies-filter-label"><span>Filter by Genre:</span></div>
+    <select class="movies-filter-control genre" [(ngModel)]="filterGenres" name="Genres">
+        <option value="">All Genres</option>
+        <option selected="selected" value="action">Action</option>
+        <option value="sci-fi">Sci-Fi</option>
+        <option value="adventure">adventure</option>
+        <option value="comedy">Comedy</option>
+        <option value="family">Family</option>
+        <option value="drama">Drama</option>
+        <option value="mystery">Mystery</option>
+        <option value="thriller">Thriller</option>
+        <option value="romance">Romance</option>
+        <option value="cyberpunk">Cyberpunk</option>
+        <option value="crime">Crime</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+  </div>
+
+  <div class="movies-filter">
+      <span class=" movies-filter-label glyphicon glyphicon-search"></span>
+      <input class="movies-filter-control search" type="text" [(ngModel)]="searchText" placeholder="Search">
+  </div>
+  
+  
+</div>
 
 <div id="moviesWrapper">
 
