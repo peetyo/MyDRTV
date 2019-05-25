@@ -43,10 +43,10 @@
   <!-- add a review -->
   <div class="add-review-container">
     <h4>LEAVE A REVIEW</h4>
-    <form action="" id="reviewForm">
+    <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
       <div class="form-group">
         <label for="starRatingSelect">Your rating</label>
-        <select name="starRating" id="starRatingSelect">
+        <select id="starRatingSelect" formControlName="star_rating">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -58,14 +58,24 @@
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
+        <div *ngIf="reviewForm.controls.star_rating.errors?.required && reviewForm.controls.star_rating.touched" class="validation-error">Rating is required.</div>
+    
       </div>
       <div class="form-group">
         <label for="reviewHeadline">Add a headline</label>
-        <input id="reviewHeadline" type="text" name="reviewHeadline" class="form-control">
+        <input formControlName="headline" id="reviewHeadline" type="text" name="reviewHeadline" class="form-control">
+        <div *ngIf="reviewForm.controls.headline.errors?.required && reviewForm.controls.headline.touched" class="validation-error">This field is required.</div>
+        <div *ngIf="reviewForm.controls.headline.errors?.minlength && reviewForm.controls.headline.touched" class="validation-error">Your headline must be at least 6 characters.</div>
+        <div *ngIf="reviewForm.controls.headline.errors?.maxlength && reviewForm.controls.headline.touched" class="validation-error">Your headline must be less than 80 characters.</div>
+                          
       </div>
       <div class="form-group">
         <label for="reviewContent">Write your review</label>
-        <textarea id="reviewContent" name="reviewContent" class="form-control"> </textarea>
+        <textarea formControlName="content" id="reviewContent" name="reviewContent" class="form-control"> </textarea>
+        <div *ngIf="reviewForm.controls.content.errors?.required && reviewForm.controls.content.touched" class="validation-error">This field is required.</div>
+        <div *ngIf="reviewForm.controls.content.errors?.minlength && reviewForm.controls.content.touched" class="validation-error">Your review must be at least 20 characters.</div>
+        <div *ngIf="reviewForm.controls.content.errors?.maxlength && reviewForm.controls.content.touched" class="validation-error">Your review must be less than 1000 characters.</div>
+        
       </div>
       <!-- <div class="spoilers-div">
         <p>Does this review contain spoilers?</p>
@@ -79,7 +89,7 @@
         </label>
       </div> -->
       <div class="form-group text-right">
-          <button class="btn btn-primary">SUBMIT</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">SUBMIT</button>
       </div>
     </form>
   </div>

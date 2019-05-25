@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from  "@angular/fire/auth";
+import { firestore } from 'firebase';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../../store/app.reducers';
@@ -11,7 +12,7 @@ import * as MovieActions from './store/movie.actions';
 })
 export class MovieService {
 
-  constructor(private firestore : AngularFirestore,private store: Store<fromApp.AppState>) { }
+  constructor(private firestore : AngularFirestore,private firebaseAuth: AngularFireAuth,private store: Store<fromApp.AppState>) { }
 
   getMovie(movieId: string){
       // Get the movie data;
@@ -20,11 +21,9 @@ export class MovieService {
         ...movieDoc.payload.data()}
 
       this.store.dispatch(new MovieActions.GetMovie(movieObject));
-      console.log(movieObject)
       // Get the reviews
       this.firestore.collection('movies').doc(movieId).collection('reviews').snapshotChanges().subscribe(actionArray => {
         let reviews = actionArray.map(reviewDoc => {
-          console.log(reviewDoc.payload.doc.data());
           return {
             id : reviewDoc.payload.doc.id,
             ...reviewDoc.payload.doc.data()}
@@ -32,5 +31,14 @@ export class MovieService {
         this.store.dispatch(new MovieActions.GetReviews(reviews));
       });
     })
+  }
+
+  addReview(movieId,reviewData){
+    let displayName = this.firebaseAuth.auth.currentUser.displayName;
+    reviewData.username = displayName
+    reviewData.created_on = firestore.Timestamp.fromDate(new Date)
+    reviewData.contains_spoilers = false
+
+    this.firestore.collection('movies').doc(movieId).collection('reviews').add(reviewData)
   }
 }

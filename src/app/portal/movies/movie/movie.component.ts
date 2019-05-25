@@ -6,6 +6,7 @@ import * as fromApp from '../../../store/app.reducers';
 import * as fromMovie from './store/movie.reducers';
 import * as MovieActions from './store/movie.actions';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-movie',
@@ -13,27 +14,44 @@ import { Observable } from 'rxjs';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit,OnDestroy {
+
+  reviewForm: FormGroup
   movieId: string;
   movie: Observable<fromMovie.State>;
-  constructor(private movieService: MovieService, private route: ActivatedRoute, private store: Store<fromApp.AppState>) { 
+  
+  constructor(private formBuilder: FormBuilder,private movieService: MovieService, private route: ActivatedRoute, private store: Store<fromApp.AppState>) { 
+   
+   this.reviewForm = this.formBuilder.group({
 
-    this.movie = this.store.select('movie')
-    this.route.params.subscribe(params => {
-      this.movieId = params['id'];
-      console.log(params['id'])
-      this.getMovieAndReviews(this.movieId)
+      'star_rating': ['', [Validators.required]],
+      'headline': ['', [Validators.required,Validators.minLength(6),Validators.maxLength(80)]],
+      'content': ['', [Validators.required,Validators.minLength(20),Validators.maxLength(1000)]]
       
     });
+    
   }
   
   
   ngOnInit() {
+    window.scroll(0,0);
+    this.movie = this.store.select('movie')
+    this.route.params.subscribe(params => {
+      this.movieId = params['id'];
+      this.getMovieAndReviews(this.movieId)
+      
+    });
   }
 
   ngOnDestroy(){
     this.store.dispatch(new MovieActions.ClearMovie());
   }
+
   getMovieAndReviews(movieId){
     this.movieService.getMovie(movieId)
+  }
+
+  addReview(){
+    console.log(this.reviewForm.value)
+    this.movieService.addReview(this.movieId,this.reviewForm.value)
   }
 }
