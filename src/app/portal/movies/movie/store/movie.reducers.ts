@@ -31,7 +31,7 @@ const initialState: State = {
     reviews: []
 }
 
-export function authReducer(state = initialState, action: any){
+export function movieReducer(state = initialState, action: any){
     switch (action.type){
         case (MovieActions.GET_MOVIE):
             return {

@@ -21,6 +21,7 @@ export class AuthService {
     private store: Store<fromApp.AppState>) {   }
   
   setAuth() {
+    this.store.dispatch(new AuthActions.AuthLoading());
     this.firebaseAuth.auth.onAuthStateChanged(user => {
       if(user){
         this.store.dispatch(new AuthActions.Signin(user));
@@ -28,14 +29,16 @@ export class AuthService {
         .then((token:string) =>{
             this.store.dispatch(new AuthActions.SetToken(token))
           })
-      }else{
-        console.log("User NOT logged in")
-        this.store.dispatch(new AuthActions.Logout());
+        }else{
+          console.log("User NOT logged in")
+          this.store.dispatch(new AuthActions.AuthFailure())
+        // this.store.dispatch(new AuthActions.Logout());
       }
     })
   }
 
   register(formData){
+    this.store.dispatch(new AuthActions.AuthLoading());
     const email = formData.email;
     const password = formData.password;
     const fullName = formData.fullName;
@@ -52,13 +55,16 @@ export class AuthService {
             this.store.dispatch(new AuthActions.SetToken(token))
             this.router.navigate(['portal/home'])
             })
-          }, (error)=>{ console.log("Error when updating display name", error)})
+          }, error=>{ console.log("Error when updating display name", error)
+              this.store.dispatch(new AuthActions.AuthFailure())})
         }else{
+          this.store.dispatch(new AuthActions.AuthFailure())
           console.error("User was not created")
-      }
-    })
-    .catch(function(error) {
-      console.error("Internal Server error", error)
+        }
+      })
+      .catch(error => {
+        console.error(error.message)
+        this.store.dispatch(new AuthActions.AuthFailure())
     });
   }
 
@@ -67,6 +73,7 @@ export class AuthService {
     this.store.dispatch(new AuthActions.Logout());
   }
   loginWithAuth(loginData){
+    this.store.dispatch(new AuthActions.AuthLoading());
     const email = loginData.email;
     const password = loginData.password;
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email,password)
@@ -77,6 +84,8 @@ export class AuthService {
         .then((token:string) =>{
           this.store.dispatch(new AuthActions.SetToken(token))
         })
-    }).catch(error =>{return false})
+    }).catch(error =>{
+      this.store.dispatch(new AuthActions.AuthFailure());
+      return false})
   }
 }

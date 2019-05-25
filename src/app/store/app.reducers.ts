@@ -10,5 +10,5 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
     auth: fromAuth.authReducer,
-    movie: fromMovie.authReducer
+    movie: fromMovie.movieReducer
 };

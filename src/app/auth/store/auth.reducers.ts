@@ -6,13 +6,15 @@ export interface State {
     displayName: string;
     email: string;
     uid: string;
+    loading: boolean;
 }
 const initialState: State = {
     token: null,
     authenticated: false,
     displayName: null,
     email: null,
-    uid: null
+    uid: null,
+    loading: false
 }
 // switched the action to type any just to run the initial state test passing {}
 // export function authReducer(state = initialState, action: AuthActions.AuthActions){
@@ -39,7 +41,18 @@ export function authReducer(state = initialState, action: any){
         case (AuthActions.SET_TOKEN):
             return {
                 ...state,
-                token: action.payload
+                token: action.payload,
+                loading: false
+            };
+        case (AuthActions.AUTH_LOADING):
+            return {
+                ...state,
+                loading: true
+            };
+        case (AuthActions.AUTH_FAILURE):
+            return {
+                ...state,
+                loading: false
             };
         default: 
             return state;
