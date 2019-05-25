@@ -1,16 +1,16 @@
 <main>
-  <div id="featured-show" class="container">
+  <div id="featured-show" class="container" [ngStyle]="{'background-image': 'linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)),url(../../../../assets/hero/' + (movie | async).hero_img_url + ')'}">
     <div class="featured-info">
       <div class="featured-title text-left">
-        <h1>THE AVENGERS: ENDGAME
+        <h1> {{ ( movie | async).title }}
             <span class="star">&#9733;</span>
-            <span class="rating">9.5</span>
+            <span class="rating">{{ ( movie | async).star_rating }}</span>
         </h1>
       </div>
       <div class="featured-details text-left">
         <span class="match m-r-15">73% match</span>
-        <span class="pg-rating m-r-15">13 +</span>
-        <span class="production-year m-r-15">2019</span>
+        <span class="pg-rating m-r-15"> {{ ( movie | async).pg_rating }} +</span>
+        <span class="production-year m-r-15"> {{ ( movie | async).release_year }}</span>
       </div>
       <button class="btn btn-primary">Watch Now</button>
     </div>
@@ -19,15 +19,15 @@
   <div class="row movie-details-container">
     <div class="movie-information col-xs-12 col-sm-8">
       <h4>STORY</h4>
-      <p>After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to undo Thanos' actions and restore order to the universe.</p>
+      <p>{{ (movie | async).storyline}}</p>
       <h4>CAST</h4>
-      <p>Robert Downey Jr., Chris Evans, Mark Ruffalo</p>
+      <p><span *ngFor="let actor of ( movie | async).actors;  last as isLast">{{ actor }}<span *ngIf="!isLast">, </span> </span></p>
       <h4>DIRECTORS</h4>
-      <p>Christopher Markus, Stephen McFeely</p>
+      <p><span *ngFor="let director of ( movie | async).directors; last as isLast">{{ director }}<span *ngIf="!isLast">, </span> </span></p>
     </div>
     <div class="movie-facts col-xs-12 col-sm-4">
         <h4>GENRE</h4>
-        <p> Action, Adventure, Sci-Fi</p>
+        <p><span *ngFor="let genre of ( movie | async).genres; last as isLast">{{ genre }}<span *ngIf="!isLast">, </span> </span></p>
         <h4>SHARE</h4>
         <div class="share-icons">
           <img src="../../../../assets/social-media-icons/facebook.png">
@@ -38,15 +38,16 @@
   </div>
 
   <!-- insert slider here -->
-
+  <h4 id="more-shows">MORE SHOWS</h4>
+  <app-slider [movieList]="movieList" [parent]="'movie'"></app-slider>
 
   <!-- add a review -->
   <div class="add-review-container">
     <h4>LEAVE A REVIEW</h4>
-    <form action="" id="reviewForm">
+    <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
       <div class="form-group">
         <label for="starRatingSelect">Your rating</label>
-        <select name="starRating" id="starRatingSelect">
+        <select id="starRatingSelect" formControlName="star_rating">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -58,16 +59,26 @@
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
+        <div *ngIf="reviewForm.controls.star_rating.errors?.required && reviewForm.controls.star_rating.touched" class="validation-error">Rating is required.</div>
+    
       </div>
       <div class="form-group">
         <label for="reviewHeadline">Add a headline</label>
-        <input id="reviewHeadline" type="text" name="reviewHeadline" class="form-control">
+        <input formControlName="headline" id="reviewHeadline" type="text" name="reviewHeadline" class="form-control">
+        <div *ngIf="reviewForm.controls.headline.errors?.required && reviewForm.controls.headline.touched" class="validation-error">This field is required.</div>
+        <div *ngIf="reviewForm.controls.headline.errors?.minlength && reviewForm.controls.headline.touched" class="validation-error">Your headline must be at least 6 characters.</div>
+        <div *ngIf="reviewForm.controls.headline.errors?.maxlength && reviewForm.controls.headline.touched" class="validation-error">Your headline must be less than 80 characters.</div>
+                          
       </div>
       <div class="form-group">
         <label for="reviewContent">Write your review</label>
-        <textarea id="reviewContent" name="reviewContent" class="form-control"> </textarea>
+        <textarea formControlName="content" id="reviewContent" name="reviewContent" class="form-control"> </textarea>
+        <div *ngIf="reviewForm.controls.content.errors?.required && reviewForm.controls.content.touched" class="validation-error">This field is required.</div>
+        <div *ngIf="reviewForm.controls.content.errors?.minlength && reviewForm.controls.content.touched" class="validation-error">Your review must be at least 20 characters.</div>
+        <div *ngIf="reviewForm.controls.content.errors?.maxlength && reviewForm.controls.content.touched" class="validation-error">Your review must be less than 1000 characters.</div>
+        
       </div>
-      <div class="spoilers-div">
+      <!-- <div class="spoilers-div">
         <p>Does this review contain spoilers?</p>
         <label>
           <input type="radio" name="containsSpoilers" id="spoilerTrue" value="Yes" >
@@ -77,9 +88,9 @@
           <input type="radio" name="containsSpoilers" id="spoilerFalse" value="No" checked>
             No
         </label>
-      </div>
+      </div> -->
       <div class="form-group text-right">
-          <button class="btn btn-primary">SUBMIT</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">SUBMIT</button>
       </div>
     </form>
   </div>
@@ -88,18 +99,17 @@
   <!-- reviews -->
   <div class="" id="allReviews">
     <h4>REVIEWS</h4>
-    <div class="review-container">
+    <div class="review-container" *ngFor="let review of (movie | async).reviews" data-id="{{ review.id }}">
       <div class="movie-rating">
         <span class="star">&#9733;</span>
-        <p><strong>10</strong>/10</p>
+        <p><strong>{{ review.star_rating }}</strong>/10</p>
       </div>
-      <h4>One of the most stunning shows on television</h4>
+      <h4>{{ review.headline }}</h4>
       <div class="review-info">
-        <span>by paulday98</span>
-        <span>19 April 2011</span>
+        <span>{{ review.username }}</span>
+        <span>{{ review.created_on.seconds * 1000 | date:'MM-dd-yyyy' }}</span>
       </div>
-      <p>Do not believe any of those negative reviews. I honestly cannot understand why some reviewers have given this such a low rating. I think some people love the sound of their own voice and think their opinion is worth something and will be disagreeable simply for the sake of it.
-        Having said that, this show is stunning. I have never read the books and now I want to. There is so much crap on TV that is renewed year after year (CSI, House etc.) which uses cheap gags, pointless and sometimes ridiculous plots, unbelievable and many times one dimensional characters and yet all the truly great shows get cancelled.</p>
+      <p>{{ review.content }}</p>
     </div>
   </div>
 

@@ -23,7 +23,7 @@ export class MovieListComponent implements OnInit {
   getAllMovies(){
     this.moviesService.getAllMovies().subscribe(actionArray => {
       this.movieFullList = actionArray.map(item => {
-        console.log(item.payload.doc.data());
+        // console.log(item.payload.doc.data());
         return {
           id : item.payload.doc.id,
           ...item.payload.doc.data()} as MovieShort
