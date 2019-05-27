@@ -5,7 +5,7 @@
     <div class="panel-body">
 
         <p>Log in to access your TV programmes</p>
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
                 <label>
                     <div *ngIf="loginFailure" class="validation-error">Incorrect email or password.</div>
