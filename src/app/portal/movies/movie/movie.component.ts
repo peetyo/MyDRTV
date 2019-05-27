@@ -59,11 +59,11 @@ export class MovieComponent implements OnInit,OnDestroy {
 
     this.getMovieList()
 
-    console.log(this.getMovieAndReviews);
+    // console.log(this.getMovieAndReviews);
 
     this.movieSub = this.movie.subscribe(movie=>{
       this.youtubeCode = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+movie.youtube_code);
-      console.log(this.youtubeCode);
+      // console.log(this.youtubeCode);
     })
   }
 
