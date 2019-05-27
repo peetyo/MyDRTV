@@ -1,6 +1,14 @@
 <main>
   <div class="loading" *ngIf="(movie | async).loading"><p> Loading movie. Please, wait. </p></div>
+
+  <div *ngIf="this.isPlaying" id="video-player">
+      <div (click)="stopMovie()" class="btn-video-player">X</div>
+      <!-- <iframe src="https://www.youtube.com/watch?v={{movie.youtube_code}}"></iframe> -->
+      <iframe [src]="this.youtubeCode"></iframe>
+  </div>
+
   <div id="featured-show" class="container" [ngStyle]="{'background-image': 'linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)),url(../../../../assets/hero/' + (movie | async).hero_img_url + ')'}">
+    
     <div class="featured-info">
       <div class="featured-title text-left">
         <h1> {{ ( movie | async).title }}
@@ -13,7 +21,7 @@
         <span class="pg-rating m-r-15"> {{ ( movie | async).pg_rating }} +</span>
         <span class="production-year m-r-15"> {{ ( movie | async).release_year }}</span>
       </div>
-      <button class="btn btn-primary">Watch Now</button>
+      <button (click)="playMovie()" id="btn-play" class="btn btn-primary">Watch Now</button>
     </div>
   </div>
 

@@ -30,7 +30,6 @@ export class AuthService {
             this.store.dispatch(new AuthActions.SetToken(token))
           })
         }else{
-          console.log("User NOT logged in")
           this.store.dispatch(new AuthActions.AuthFailure())
         // this.store.dispatch(new AuthActions.Logout());
       }
