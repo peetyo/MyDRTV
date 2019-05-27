@@ -1,6 +1,6 @@
 import { SearchPipe } from './search.pipe';
 
-fdescribe('SearchPipe', () => {
+describe('SearchPipe', () => {
 
   let pipe: SearchPipe;
 
@@ -47,12 +47,12 @@ fdescribe('SearchPipe', () => {
       title:"Ghost: Second Attack"}
   ]
 
-  fit('Create an instance', () => {
+  it('Create an instance', () => {
     const pipe = new SearchPipe();
     expect(pipe).toBeTruthy();
   });
 
-  fit('Should return matching movie titles', () => {
+  it('Should return matching movie titles', () => {
     expect(pipe.transform(movies, "avengers"))
     .toEqual([
       {
@@ -68,7 +68,7 @@ fdescribe('SearchPipe', () => {
       ]);
   });
 
-  fit('Should return matching movie titles regardless of case', () => {
+  it('Should return matching movie titles regardless of case', () => {
     expect(pipe.transform(movies, "AveNgers"))
     .toEqual([
       {
@@ -84,17 +84,17 @@ fdescribe('SearchPipe', () => {
       ]);
   });
 
-  fit('Should return all movies "" (empty string)', () => {
+  it('Should return all movies "" (empty string)', () => {
     expect(pipe.transform(movies, ""))
     .toEqual(movies);
   });
 
-  fit('Should return all movies  "    " (empty string)', () => {
+  it('Should return all movies  "    " (empty string)', () => {
     expect(pipe.transform(movies, "  "))
     .toEqual(movies);
   });
 
-  fit('Should return all matching movies based on title', () => {
+  it('Should return all matching movies based on title', () => {
     expect(pipe.transform(movies, "gHost"))
     .toEqual([
       {
@@ -118,7 +118,7 @@ fdescribe('SearchPipe', () => {
       ]);
   });
 
-  fit('Should return all matching movies based on genre', () => {
+  it('Should return all matching movies based on genre', () => {
     expect(pipe.transform(movies, "sci-fi"))
     .toEqual([
       {
@@ -151,7 +151,7 @@ fdescribe('SearchPipe', () => {
       ]);
   });
 
-  fit('Should return all matching movies based on actor', () => {
+  it('Should return all matching movies based on actor', () => {
     expect(pipe.transform(movies, "Cumberbatch"))
     .toEqual([
       {
@@ -166,7 +166,7 @@ fdescribe('SearchPipe', () => {
       ]);
   });
 
-  fit('Should return all matching movies based on keyword', () => {
+  it('Should return all matching movies based on keyword', () => {
     expect(pipe.transform(movies, "Witty"))
     .toEqual([
       {

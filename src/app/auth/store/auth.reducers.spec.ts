@@ -3,9 +3,9 @@ import * as fromAuth from './auth.reducers';
 import * as types from './auth.actions';
 var deepFreeze = require('deep-freeze');
 
-fdescribe('Auth Reducer', () => {
+describe('Auth Reducer', () => {
 
-    fit('Should return the initial state', () => {
+    it('Should return the initial state', () => {
         expect(fromAuth.authReducer(undefined, {})).toEqual(
           { token: null,
             authenticated: false,
@@ -15,7 +15,7 @@ fdescribe('Auth Reducer', () => {
             loading: false} as fromAuth.State);
     });
 
-    fit('Signin should update auth properties', () => {
+    it('Signin should update auth properties', () => {
     
         let state = {token: null,
             authenticated: false,
@@ -41,7 +41,7 @@ fdescribe('Auth Reducer', () => {
                 loading: true} as fromAuth.State);
       });
 
-      fit('Signup should update auth properties', () => {
+      it('Signup should update auth properties', () => {
     
         let state = {token: null,
             authenticated: false,
@@ -67,7 +67,7 @@ fdescribe('Auth Reducer', () => {
                 loading: true} as fromAuth.State);
       });
 
-      fit('Should update auth token', () => {
+      it('Should update auth token', () => {
     
         let state = {token: null,
             authenticated: false,
@@ -88,7 +88,7 @@ fdescribe('Auth Reducer', () => {
                 loading: false} as fromAuth.State);
       });
 
-      fit('Should reset auth state', () => {
+      it('Should reset auth state', () => {
     
         let state = {token: 'generatedtoken',
             authenticated: true,
