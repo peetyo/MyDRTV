@@ -11,6 +11,13 @@
       <a class="navbar-brand" routerLink="portal/home"><img alt="logo" src="../../assets/dr-logo.png"></a>
     </div>
 
+    <!-- the below (login and reg links) will show if you're NOT authenticated -->
+    <div *ngIf="!(authState | async).authenticated" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="login">Log In</a></li>
+        <li routerLinkActive="active"><a routerLink="register">Register</a></li>
+      </ul>
+    </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div *ngIf="(authState | async).authenticated" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
