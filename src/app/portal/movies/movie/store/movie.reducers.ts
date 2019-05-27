@@ -13,6 +13,7 @@ export interface State {
     star_rating: number;
     storyline: string;
     title: string;
+    youtube_code: string;
     reviews: any[];
     loading: boolean;
 }
@@ -29,6 +30,7 @@ const initialState: State = {
     star_rating: null,
     storyline: null,
     title: null,
+    youtube_code: null,
     reviews: [],
     loading: false
 }

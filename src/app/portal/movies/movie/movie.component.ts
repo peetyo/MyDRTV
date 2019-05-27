@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducers';
 import * as fromMovie from './store/movie.reducers';
 import * as MovieActions from './store/movie.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MovieShort } from 'src/app/models/movie-short.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -21,6 +21,7 @@ export class MovieComponent implements OnInit,OnDestroy {
   movieId: string;
   movie: Observable<fromMovie.State>;
   movieList: MovieShort[];
+  movieSub: Subscription;
   
   constructor(private formBuilder: FormBuilder,
     private movieService: MovieService,
@@ -48,10 +49,14 @@ export class MovieComponent implements OnInit,OnDestroy {
       window.scroll(0,0);
     });
     this.getMovieList()
+
+    this.movieSub = this.movie.subscribe(movie => {
+    })
   }
 
   ngOnDestroy(){
     this.store.dispatch(new MovieActions.ClearMovie());
+    this.movieSub.unsubscribe();
   }
 
   getMovieAndReviews(movieId){
