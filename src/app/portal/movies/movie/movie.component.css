@@ -34,25 +34,25 @@
 
   .btn-video-player{
       color: white;
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       position: absolute;
       right: 0;
       top: 0;
       background-color: #212121;
       font-size: 30px;
       text-align: center;
-      padding-top: 2px;
+      /* padding-top: 2px; */
       cursor: pointer;
-
+      border-bottom-left-radius: 5px;
       display: flex;
       flex-direction: column;
       justify-content: center;
   }
-
+/* 
   .btn-video-player>span{
-      /* background-color: pink; */
-  }
+      background-color: pink;
+  } */
 
   #featured-show {
     height: 75vh;
