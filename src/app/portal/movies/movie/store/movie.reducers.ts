@@ -14,6 +14,7 @@ export interface State {
     storyline: string;
     title: string;
     reviews: any[];
+    loading: boolean;
 }
 const initialState: State = {
     actors: [],
@@ -28,7 +29,8 @@ const initialState: State = {
     star_rating: null,
     storyline: null,
     title: null,
-    reviews: []
+    reviews: [],
+    loading: false
 }
 
 export function movieReducer(state = initialState, action: any){
@@ -41,11 +43,22 @@ export function movieReducer(state = initialState, action: any){
             case (MovieActions.GET_REVIEWS):
                 return {
                     ...state,
-                    reviews: action.payload
+                    reviews: action.payload,
+                    loading: false
                 };
             case (MovieActions.CLEAR_MOVIE):
                 return {
                    ...initialState
+                };
+            case (MovieActions.MOVIE_LOADING):
+                return {
+                   ...state,
+                   loading: true
+                };
+            case (MovieActions.MOVIE_FAILURE):
+                return {
+                    ...state,
+                    loading: false
                 };
             default: 
             return state;

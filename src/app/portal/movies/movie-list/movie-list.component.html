@@ -1,3 +1,4 @@
+<div class="loading" *ngIf="(movieList | async).loading"><p> Loading movies. Please, wait. </p></div>
 <div id="movies-filter-panel">
 
   <div class="movies-filter">
@@ -41,8 +42,7 @@
 </div>
 
 <div id="moviesWrapper">
-
-<a routerLink="{{movie.movie_id}}" *ngFor="let movie of movieFullList | search : searchText | genre : filterGenres  | rating: filterRating">
+<a routerLink="{{movie.movie_id}}" *ngFor="let movie of (movieList | async ).movieList | search : searchText | genre : filterGenres  | rating: filterRating">
   <div class="card" [ngStyle]="{'background-image': 'url(../../../assets/thumb/' + movie.thumbnail_url + ')'}">
       <div class="card-info">
           <div class="movie-detail movie-title"><span class="title">{{ movie.title }}</span></div>

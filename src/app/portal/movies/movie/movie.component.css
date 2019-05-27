@@ -1,4 +1,16 @@
-  
+
+    div.loading p{
+        font-size: 20;
+        font-weight: 600;
+        text-align: center;
+        margin: 0;
+    }
+    div.loading{
+        background-color: #FFD036;
+        background-color: rgb(80, 179, 255);
+        color:#222;
+        padding: 10px;
+    }
   main {
     background-color: #1d1d1d;
     padding-bottom: 20px;
