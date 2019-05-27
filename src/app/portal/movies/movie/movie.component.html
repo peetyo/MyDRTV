@@ -45,7 +45,7 @@
   <!-- add a review -->
   <div class="add-review-container">
     <h4>LEAVE A REVIEW</h4>
-    <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
+    <form [formGroup]="reviewForm" (ngSubmit)="addReview()" id="reviewForm">
       <div class="form-group">
         <label for="starRatingSelect">Your rating</label>
         <select id="starRatingSelect" formControlName="star_rating">
