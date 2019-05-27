@@ -25,8 +25,15 @@ export class SliderComponent implements OnInit {
     }
   }
 
-  scrollLeft(){
-   console.log($(".card"));
+  // this triggers on click of the arrows next to the sliders
+  scrollLeft(event){
+    var target = $(event.target).parent().parent().find(".scrolling-wrapper");
+    target.animate( { scrollLeft: '-=300' }, 500, "swing");
+  }
+
+  scrollRight(event){
+    var target = $(event.target).parent().parent().find(".scrolling-wrapper");
+    target.animate( { scrollLeft: '+=300' }, 500, "swing");
   }
 
 }

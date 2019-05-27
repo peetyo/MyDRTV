@@ -123,6 +123,7 @@
     margin-bottom: 20px;
     width: 100%;
     -webkit-overflow-scrolling: touch;
+    transition: .2s;
   }
   
   .scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
