@@ -7,11 +7,11 @@
       <iframe [src]="this.youtubeCode"></iframe>
   </div>
 
-  <div id="featured-show" class="container" [ngStyle]="{'background-image': 'linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)),url(../../../../assets/hero/' + (movie | async).hero_img_url + ')'}">
+  <div *ngIf="(movie | async).hero_img_url" id="featured-show" class="container" [ngStyle]="{'background-image': 'linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)),url(../../../../assets/hero/' + (movie | async).hero_img_url + ')'}">
     
     <div class="featured-info">
       <div class="featured-title text-left">
-        <h1> {{ ( movie | async).title }}
+        <h1><span id="title"> {{ ( movie | async).title }} </span>
             <span class="star">&#9733;</span>
             <span class="rating">{{ ( movie | async).star_rating }}</span>
         </h1>
