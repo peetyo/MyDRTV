@@ -5,10 +5,14 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducers';
 import * as fromMovie from './store/movie.reducers';
 import * as MovieActions from './store/movie.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MovieShort } from 'src/app/models/movie-short.model';
 import { MoviesService } from 'src/app/services/movies.service';
+
+// experimental - this is so iFrame would work without a security alert
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-movie',
@@ -21,13 +25,17 @@ export class MovieComponent implements OnInit,OnDestroy {
   movieId: string;
   movie: Observable<fromMovie.State>;
   movieList: MovieShort[];
+  movieSub: Subscription;
   isPlaying: boolean;
+  youtubeCode;
+ 
   
   constructor(private formBuilder: FormBuilder,
     private movieService: MovieService,
     private moviesService: MoviesService, 
     private route: ActivatedRoute, 
-    private store: Store<fromApp.AppState>) { 
+    private store: Store<fromApp.AppState>,
+    public sanitizer: DomSanitizer) { 
    
    this.reviewForm = this.formBuilder.group({
 
@@ -39,26 +47,39 @@ export class MovieComponent implements OnInit,OnDestroy {
     
   }
   
-  
   ngOnInit() {
     window.scroll(0,0);
     this.movie = this.store.select('movie')
+
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
       this.getMovieAndReviews(this.movieId)
       window.scroll(0,0);
-      
     });
+
     this.getMovieList()
+
+    console.log(this.getMovieAndReviews);
+
+    this.movieSub = this.movie.subscribe(movie=>{
+      this.youtubeCode = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+movie.youtube_code);
+      console.log(this.youtubeCode);
+    })
   }
 
   playMovie(){
-    this.isPlaying = !this.isPlaying;
-    console.log("Playing? "+this.isPlaying);
+    this.isPlaying = true;
+    // console.log("Playing? "+this.isPlaying);
+  }
+
+  stopMovie(){
+    this.isPlaying = false;
+    // console.log("Playing? "+this.isPlaying);
   }
 
   ngOnDestroy(){
     this.store.dispatch(new MovieActions.ClearMovie());
+    this.movieSub.unsubscribe();
   }
 
   getMovieAndReviews(movieId){

@@ -10,6 +10,7 @@ export interface State {
     keywords: [];
     pg_rating: string;
     release_year: number;
+    youtube_code: string;
     star_rating: number;
     storyline: string;
     title: string;
@@ -26,6 +27,7 @@ const initialState: State = {
     keywords: [],
     pg_rating: null,
     release_year: null,
+    youtube_code: null,
     star_rating: null,
     storyline: null,
     title: null,
