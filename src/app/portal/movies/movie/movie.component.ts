@@ -62,7 +62,8 @@ export class MovieComponent implements OnInit,OnDestroy {
     console.log(this.getMovieAndReviews);
 
     this.movieSub = this.movie.subscribe(movie=>{
-      this.youtubeCode = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+movie.youtube_code);
+      // the autoplay on the line below worked, and then stopped randomly
+      this.youtubeCode = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+movie.youtube_code+"?autoplay=1&controls=0");
       console.log(this.youtubeCode);
     })
   }
