@@ -2,8 +2,7 @@
   <div class="loading" *ngIf="(movie | async).loading"><p> Loading movie. Please, wait. </p></div>
 
   <div *ngIf="this.isPlaying" id="video-player">
-      <div (click)="stopMovie()" class="btn-video-player">X</div>
-      <!-- <iframe src="https://www.youtube.com/watch?v={{movie.youtube_code}}"></iframe> -->
+      <div (click)="stopMovie()" class="btn-video-player"><span>X</span></div>
       <iframe [src]="this.youtubeCode"></iframe>
   </div>
 
