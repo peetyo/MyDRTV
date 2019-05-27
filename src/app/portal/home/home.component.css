@@ -131,7 +131,7 @@
     height: 75vh;
     width: 100%;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(83, 83, 83, 0.45)), to(rgba(83, 83, 83, 0.45))), url("../../../assets/flash.jpg");
-    background: linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)), url("../../../assets/flash.jpg");
+    background: linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)), url("../../../assets/hero/hero_ghost_in_the_shell.jpg");
     background-size: cover;
     color: whitesmoke;
     padding-top: 20%;
@@ -143,6 +143,7 @@
     opacity: .9;
     text-transform: uppercase;
     font-weight: 600;
+    font-size: 50px;
     margin-bottom: 0;
   }
   
@@ -162,23 +163,23 @@
     transition: .2s;
   }
   
-  #featured-show .btn-primary {
+#featured-show .btn-primary {
       background-color: #FFD036;
       margin-right: 20px;
-    }
-    #featured-show .btn-primary:hover {
+}
+    
+#featured-show .btn-primary:hover {
       background-color: rgb(218, 169, 9);  
-    }
-    #featured-show .btn-secondary:hover {
+}
+   
+#featured-show .btn-secondary:hover {
         background-color: rgb(182, 181, 181);
-      }
-  /*# sourceMappingURL=style.css.map */
-  /* @media only screen and (max-width : 768px){
-    div.scrolling-wrapper{
-        padding-left: 0;
-        padding-right: 0;
-    }
-  } */
+}
+  
+.featured-info>p{
+  width: 900px;
+}
+
   @media only screen and (max-width: 768px) {
     .slider-wrapper{
         padding-left: 10px;
