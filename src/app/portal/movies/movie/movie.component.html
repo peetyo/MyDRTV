@@ -3,7 +3,6 @@
 
   <div *ngIf="this.isPlaying" id="video-player">
       <div (click)="stopMovie()" class="btn-video-player">X</div>
-      <!-- <iframe src="https://www.youtube.com/watch?v={{movie.youtube_code}}"></iframe> -->
       <iframe [src]="this.youtubeCode"></iframe>
   </div>
 
