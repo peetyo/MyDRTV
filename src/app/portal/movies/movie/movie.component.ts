@@ -21,6 +21,7 @@ export class MovieComponent implements OnInit,OnDestroy {
   movieId: string;
   movie: Observable<fromMovie.State>;
   movieList: MovieShort[];
+  isPlaying: boolean;
   
   constructor(private formBuilder: FormBuilder,
     private movieService: MovieService,
@@ -46,8 +47,14 @@ export class MovieComponent implements OnInit,OnDestroy {
       this.movieId = params['id'];
       this.getMovieAndReviews(this.movieId)
       window.scroll(0,0);
+      
     });
     this.getMovieList()
+  }
+
+  playMovie(){
+    this.isPlaying = !this.isPlaying;
+    console.log("Playing? "+this.isPlaying);
   }
 
   ngOnDestroy(){
