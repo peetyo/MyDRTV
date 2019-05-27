@@ -1,4 +1,5 @@
 <main>
+  <div class="loading" *ngIf="(movie | async).loading"><p> Loading movie. Please, wait. </p></div>
   <div id="featured-show" class="container" [ngStyle]="{'background-image': 'linear-gradient(rgba(83, 83, 83, 0.45), rgba(83, 83, 83, 0.45)),url(../../../../assets/hero/' + (movie | async).hero_img_url + ')'}">
     <div class="featured-info">
       <div class="featured-title text-left">

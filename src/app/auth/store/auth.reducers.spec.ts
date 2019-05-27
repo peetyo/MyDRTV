@@ -11,7 +11,8 @@ fdescribe('Auth Reducer', () => {
             authenticated: false,
             displayName: null,
             email: null,
-            uid: null} as fromAuth.State);
+            uid: null,
+            loading: false} as fromAuth.State);
     });
 
     fit('Signin should update auth properties', () => {
@@ -20,7 +21,8 @@ fdescribe('Auth Reducer', () => {
             authenticated: false,
             displayName: null,
             email: null,
-            uid: null} as fromAuth.State;
+            uid: null,
+            loading: true} as fromAuth.State;
         deepFreeze(state);
         
         expect( fromAuth.authReducer(state, { type: types.SIGNIN,
@@ -35,7 +37,8 @@ fdescribe('Auth Reducer', () => {
                 authenticated: true,
                 displayName: "Peter Todorov",
                 email: "test@gmail.com",
-                uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2"} as fromAuth.State);
+                uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2",
+                loading: true} as fromAuth.State);
       });
 
       fit('Signup should update auth properties', () => {
@@ -44,7 +47,8 @@ fdescribe('Auth Reducer', () => {
             authenticated: false,
             displayName: null,
             email: null,
-            uid: null} as fromAuth.State;
+            uid: null,
+            loading: true} as fromAuth.State;
         deepFreeze(state);
         
         expect( fromAuth.authReducer(state, { type: types.SIGNUP,
@@ -59,7 +63,8 @@ fdescribe('Auth Reducer', () => {
                 authenticated: true,
                 displayName: "Peter Todorov",
                 email: "test@gmail.com",
-                uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2"} as fromAuth.State);
+                uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2",
+                loading: true} as fromAuth.State);
       });
 
       fit('Should update auth token', () => {
@@ -68,7 +73,8 @@ fdescribe('Auth Reducer', () => {
             authenticated: false,
             displayName: null,
             email: null,
-            uid: null} as fromAuth.State;
+            uid: null,
+            loading: true} as fromAuth.State;
         deepFreeze(state);
         
         expect( fromAuth.authReducer(state, { type: types.SET_TOKEN,
@@ -78,7 +84,8 @@ fdescribe('Auth Reducer', () => {
                 authenticated: false,
                 displayName: null,
                 email: null,
-                uid: null} as fromAuth.State);
+                uid: null,
+                loading: false} as fromAuth.State);
       });
 
       fit('Should reset auth state', () => {
@@ -87,7 +94,8 @@ fdescribe('Auth Reducer', () => {
             authenticated: true,
             displayName: "Peter Todorov",
             email: "test@gmail.com",
-            uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2"} as fromAuth.State;
+            uid: "jMo2PEsGzkRHhcIxJ31FzCBUL6E2",
+            loading: false} as fromAuth.State;
         deepFreeze(state);
         
         expect( fromAuth.authReducer(state, { type: types.LOGOUT }))
@@ -96,6 +104,7 @@ fdescribe('Auth Reducer', () => {
                 authenticated: false,
                 displayName: null,
                 email: null,
-                uid: null} as fromAuth.State);
+                uid: null,
+                loading: false} as fromAuth.State);
       });
 })
