@@ -5,7 +5,7 @@
     
     border: 0px;
     box-shadow: none;
-    height: 60vh;
+    min-height: 77vh;
 
 }
 .form-wrapper p{
