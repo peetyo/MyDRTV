@@ -1,0 +1,9 @@
+footer{
+    min-height: 60px;
+    background: #222;
+    color: whitesmoke;
+    padding-top: 20px;
+}
+footer p{
+    text-align: center;
+}

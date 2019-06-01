@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  h2 {
+    color: whitesmoke;
+  }
+  
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  
+  .scrolling-wrapper .card {
+    display: inline-block;
+  }
+  
+  .scrolling-wrapper-flexbox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  
+  .scrolling-wrapper-flexbox .card {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    margin-right: 3px;
+  }
+  
+  .card {
+    border: 3px solid #222;
+    border-radius: 2px;
+    width: 300px;
+    height: 175px;
+    background: url("../../../assets/flash.jpg");
+    background-size: cover;
+    position: relative;
+    color: white;
+    -webkit-transition: .5s;
+    transition: .5s;
+  }
+  
+  .card:hover {
+    border-color: #FFD445;
+    cursor: pointer;
+  }
+  
+  .card:hover .card-info, .card:hover .card-info p {
+    opacity: 1;
+  }
+  
+  .card:hover .card-info{
+    bottom: 0px;
+    opacity: 1;
+  }
+  
+  .card-info {
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.5)));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%); */
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    background: linear-gradient(0deg, rgba(0,0,0,0.9112687311252626) 25%, rgba(255,255,255,0) 100%);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    opacity: 0;
+    -webkit-transition: .2s;
+    transition: .2s;
+  }
+  
+  .card-info>.movie-title{
+    height: 20px;
+}
+
+.card-info h4 {
+  -webkit-transition: .2s;
+  transition: .2s;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-info span {
+  opacity: .9;
+}
+
+.title span {
+  opacity: 1;
+}
+
+.card-info span.match{
+  color: #80E759;
+}
+
+  .card-info h4 {
+    -webkit-transition: .2s;
+    transition: .2s;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .card-info p {
+    -webkit-transition: .2s;
+    transition: .2s;
+    opacity: 0;
+  }
+  
+  .scrolling-wrapper, .scrolling-wrapper-flexbox {
+    position: relative;
+    height: 175px;
+    margin-bottom: 20px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    transition: .2s;
+  }
+  
+  .scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .show-section h3 {
+    margin-left: 60px;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .slider-wrapper {
+    padding-right: 60px;
+    padding-left: 60px;
+    width: 100%;
+    margin: 20px 0px;
+    position: relative;
+  }
+  
+  .slider-wrapper .carousel-control.left,
+  .slider-wrapper .carousel-control.right {
+    background-image: none;
+    width: 60px;
+  }
+  
+  .slider-wrapper .carousel-control {
+    color: black;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .slider-wrapper{
+        padding-left: 10px;
+        padding-right: 0;
+    }
+    .show-section h3{
+        margin-left: 15px;
+    }
+  }
+  .movie-detail.movie-title{
+    font-size: 18px;
+    font-weight: 800;
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2px;
+}

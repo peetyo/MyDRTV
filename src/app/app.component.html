@@ -1,0 +1,4 @@
+<app-navbar></app-navbar>
+<div *ngIf="(authState | async).loading"><p> Please, wait. Validating Identity</p></div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button *ngIf="(authState | async).authenticated" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="portal/home"><img alt="logo" src="../../assets/dr-logo.png"></a>
+    </div>
+
+    <!-- the below (login and reg links) will show if you're NOT authenticated -->
+    <div *ngIf="!(authState | async).authenticated" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="login">Log In</a></li>
+        <li routerLinkActive="active"><a routerLink="register">Register</a></li>
+      </ul>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div *ngIf="(authState | async).authenticated" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
+      <ul class="nav navbar-nav">
+        <!-- add class active to li to light it up -->
+        <li routerLinkActive="active"><a routerLink="portal/home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="portal/movies">Movies</a></li>
+        <li routerLinkActive="active"><a href="#">Series</a></li>
+        <li routerLinkActive="active"><a href="#">Recently Added</a></li>
+        <li routerLinkActive="active"><a href="#">My List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right ">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">View Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

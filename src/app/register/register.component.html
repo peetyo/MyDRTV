@@ -1,0 +1,86 @@
+
+<div class="container col-lg-8 col-xs-12 col-md-8">
+
+    <h2>Sign Up</h2>
+    <hr>
+
+  <div class="row">
+
+      <div class="form-wrapper panel panel-default col-xs-12 col-sm-6">
+          
+          <div class="panel-body">
+        
+              <p>Sign Up to access your TV programmes</p>
+              <form [formGroup]="registerForm" (ngSubmit)="registerWithAuth()">
+        
+                  <div class="form-group">
+                      <label>
+                          EMAIL
+                          <input type="text" formControlName="email" class="form-control" placeholder="Your email">
+                          <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched" class="validation-error">This field is required.</div>
+                          <div *ngIf="!registerForm.controls.email.errors?.required && registerForm.controls.email.errors?.email && registerForm.controls.email.touched" class="validation-error">Please enter a valid email.</div>
+                      </label>
+                  </div>
+        
+        
+                  <div class="form-group">
+                      <label>
+                          FULL NAME
+                          <input type="text" formControlName="fullName" class="form-control" placeholder="Your full name">
+                          <div *ngIf="registerForm.controls.fullName.errors?.required && registerForm.controls.fullName.touched" class="validation-error">This field is required.</div>
+                          <div *ngIf="registerForm.controls.fullName.errors?.minlength && registerForm.controls.fullName.touched" class="validation-error">Your name must be at least 5 characters.</div>
+                          <div *ngIf="registerForm.controls.fullName.errors?.maxlength && registerForm.controls.fullName.touched" class="validation-error">Your name must be less than 20 characters.</div>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            PASSWORD
+                            <input type="password" formControlName="password" class="form-control" placeholder="Your password">
+                            <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched" class="validation-error">This field is required.</div>
+                            <div *ngIf="registerForm.controls.password.errors?.minlength && registerForm.controls.password.touched" class="validation-error">Password must be at least 6 characters.</div>
+                            <div *ngIf="registerForm.controls.password.errors?.maxlength && registerForm.controls.password.touched" class="validation-error">Password must be less than 20 characters.</div>
+                      </label>
+                  </div>
+        
+                  <div class="form-group">
+                      <label>
+                          CONFIRM PASSWORD
+                          <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm password">
+                          <div *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value && registerForm.controls.confirmPassword.touched" class="validation-error">Passwords do not match.</div>
+                      </label>
+                  </div>
+        
+                  <div>
+                    <!-- ADAM: I'm not writing a custom validator for confirming passwords right now. I just have the button check if passwords match -->
+                      <button type="submit" [disabled]="!registerForm.valid || registerForm.controls.password.value != registerForm.controls.confirmPassword.value" class="btn btn-primary ">Register</button>
+                  </div>
+              </form>
+          </div>
+        </div>
+        <!-- end of form wrapper -->
+
+        <!-- start of gdpr wrapper -->
+        <div class="panel panel-default col-sm-5 col-xs-12 col-md-offset-1" id="gdpr-notice">
+            <div class="panel-heading">DR Privacy Notice</div>
+            <div class="panel-body">
+              DR only collects the personal information about you that you yourself submit to DR. This can be in the following situations:
+
+                <ul>
+                  <li>you participate in our debates on dr.dk</li>
+                  <li>you have created a DR Login</li>
+                  <li>you have signed up for our newsletter</li>
+                  <li>you provide the information in connection with the use of one of DR’s apps or other services</li>
+                  <li>you submit content (photos, stories, characters, etc.) to DR</li>
+                </ul>
+
+              
+            </div>
+        </div>
+
+  </div>
+</div>
+
+
+
+
