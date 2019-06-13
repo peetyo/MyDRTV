@@ -12,6 +12,9 @@ import * as fromMovies from './store/movie-list.reducer';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
+  searchText: string;
+  filterRating: string;
+  filterGenres: string;
 
   movieList: Observable<fromMovies.State>;
   // you gotta define movieshort yourself, or import it
